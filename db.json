@@ -1,0 +1,149 @@
+{
+  "pedidos": [
+    {
+      "cod": 1,
+      "cliente": {
+        "cod": 101,
+        "nome": "Tech Solutions",
+        "estado": "SP"
+      },
+      "data": "2024-02-01",
+      "quantidade": 5
+    },
+    {
+      "cod": 2,
+      "cliente": {
+        "cod": 102,
+        "nome": "Global Trade",
+        "estado": "RJ"
+      },
+      "data": "2024-02-02",
+      "quantidade": 3
+    },
+    {
+      "cod": 3,
+      "cliente": {
+        "cod": 103,
+        "nome": "Agro Business",
+        "estado": "MG"
+      },
+      "data": "2024-02-03",
+      "quantidade": 10
+    },
+    {
+      "cod": 4,
+      "cliente": {
+        "cod": 101,
+        "nome": "Tech Solutions",
+        "estado": "SP"
+      },
+      "data": "2024-02-04",
+      "quantidade": 7
+    },
+    {
+      "cod": 5,
+      "cliente": {
+        "cod": 104,
+        "nome": "Eco Farms",
+        "estado": "PR"
+      },
+      "data": "2024-02-05",
+      "quantidade": 2
+    },
+    {
+      "cod": 6,
+      "cliente": {
+        "cod": 105,
+        "nome": "Solar Tech",
+        "estado": "SC"
+      },
+      "data": "2024-02-06",
+      "quantidade": 4
+    },
+    {
+      "cod": 7,
+      "cliente": {
+        "cod": 106,
+        "nome": "Green Agro",
+        "estado": "RS"
+      },
+      "data": "2024-02-07",
+      "quantidade": 6
+    },
+    {
+      "cod": 8,
+      "cliente": {
+        "cod": 107,
+        "nome": "Fast Logistics",
+        "estado": "SP"
+      },
+      "data": "2024-02-08",
+      "quantidade": 8
+    }
+  ],
+  "lotes":[
+    {
+      "cod": 1,
+      "produto": {
+        "cod": 201,
+        "nome": "AlBe 1%",
+        "composicao": "Alumínio e Berílio 1%"
+      },
+      "quantidade": 50
+    },
+    {
+      "cod": 2,
+      "produto": {
+        "cod": 202,
+        "nome": "BAl 10% Barra",
+        "composicao": "Alumínio e Boro 10% - Forma Barra"
+      },
+      "quantidade": 30
+    },
+    {
+      "cod": 3,
+      "produto": {
+        "cod": 203,
+        "nome": "CUAL 50% WP",
+        "composicao": "Cobre e Alumínio 50% - Forma WP"
+      },
+      "quantidade": 40
+    },
+    {
+      "cod": 4,
+      "produto": {
+        "cod": 204,
+        "nome": "Desoxidante 12mm",
+        "composicao": "Liga para desoxidação - Diâmetro 12mm"
+      },
+      "quantidade": 25
+    },
+    {
+      "cod": 5,
+      "produto": {
+        "cod": 205,
+        "nome": "MgAl 90% (A) WP",
+        "composicao": "Magnésio e Alumínio 90% - Forma WP"
+      },
+      "quantidade": 60
+    },
+    {
+      "cod": 6,
+      "produto": {
+        "cod": 206,
+        "nome": "SrAl 15% Barra",
+        "composicao": "Estrôncio e Alumínio 15% - Forma Barra"
+      },
+      "quantidade": 20
+    },
+    {
+      "cod": 7,
+      "produto": {
+        "cod": 207,
+        "nome": "Liga 6351 9,5mm - (F)",
+        "composicao": "Liga de Alumínio 6351 - Diâmetro 9,5mm"
+      },
+      "quantidade": 35
+    }
+  ]
+}

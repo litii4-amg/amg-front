@@ -1,6 +1,14 @@
 .footer {
-    background-color: #222;
+    background-color: #2273ba;
     color: #fff;
-    padding: 3em;
+    padding: 1em;
     text-align: center;
+}
+
+.copy_right{
+    margin-top: 1em;
+}
+
+.copy_right span{
+    font-weight: bold;
 }
