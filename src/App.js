@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./js/pages/Home";
 import Pedido from "./js/pages/Pedido";
 import Lote from "./js/pages/Lote";
+import Produto from "./js/pages/Produto";
 
 import Container from "./js/layouts/Container";
 import Navbar from "./js/layouts/Navbar";
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/pedido" element={<Pedido />} />
             <Route path="/lote" element={<Lote />} />
+            <Route path="/produto" element={<Produto />} />
           </Routes>
         </Container>
         <Footer/>

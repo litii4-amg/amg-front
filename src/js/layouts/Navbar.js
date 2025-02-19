@@ -15,6 +15,7 @@ function Navbar(){
                     <li className={styles.item}><Link to="/">Inicio</Link></li>
                     <li className={styles.item}><Link to="/pedido">Pedido</Link></li>
                     <li className={styles.item}><Link to="/lote">Lote</Link></li>
+                    <li className={styles.item}><Link to ="/produto">Produto</Link></li>
                 </ul>
             </Container>
         </nav>
