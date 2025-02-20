@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import {FaEye} from "react-icons/fa";
+
 import styles from "../../css/Produto.module.css"
 
 function Produto() {
@@ -14,6 +16,7 @@ function Produto() {
                         <th>Código da linha</th>
                         <th>Nome</th>
                         <th>Acabamento</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody className={styles.tbody}>
@@ -23,6 +26,11 @@ function Produto() {
                         <td>1</td>
                         <td>Nome 1</td>
                         <td>Acabamento 1</td>
+                        <td>
+                            <button className={styles.button}>
+                                <FaEye className={styles.icon}/>
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -30,6 +38,11 @@ function Produto() {
                         <td>2</td>
                         <td>Nome 2</td>
                         <td>Acabamento 2</td>
+                        <td>
+                            <button className={styles.button}>
+                                <FaEye className={styles.icon}/>
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -37,6 +50,11 @@ function Produto() {
                         <td>3</td>
                         <td>Nome 3</td>
                         <td>Acabamento 3</td>
+                        <td>
+                            <button className={styles.button}>
+                                <FaEye className={styles.icon}/>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
