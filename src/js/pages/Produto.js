@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import {FaEye} from "react-icons/fa";
 
 import styles from "../../css/Produto.module.css"
 
+import ProdutoModal from "../projectForms/ProdutoModal";
+
 function Produto() {
+
+    const [isProdutoModalOpen, setIsProdutoModalOpen] = useState(false);
 
     return (
         <div className={styles.container}>
+           
             <table className={styles.table}>
                 <thead className={styles.thead}>
                     <tr>
@@ -27,7 +32,7 @@ function Produto() {
                         <td>Nome 1</td>
                         <td>Acabamento 1</td>
                         <td>
-                            <button className={styles.button}>
+                            <button className={styles.button} onClick={() => setIsProdutoModalOpen(true)}>
                                 <FaEye className={styles.icon}/>
                             </button>
                         </td>
@@ -39,11 +44,13 @@ function Produto() {
                         <td>Nome 2</td>
                         <td>Acabamento 2</td>
                         <td>
-                            <button className={styles.button}>
+                            <button className={styles.button} onClick={() => setIsProdutoModalOpen(true)}>
                                 <FaEye className={styles.icon}/>
                             </button>
+                            
                         </td>
                     </tr>
+                
                     <tr>
                         <td>3</td>
                         <td>Produto 3</td>
@@ -58,6 +65,7 @@ function Produto() {
                     </tr>
                 </tbody>
             </table>
+            <ProdutoModal isOpen={isProdutoModalOpen}  onClose={() => setIsProdutoModalOpen(false)}/>
         </div>
     );
 }
