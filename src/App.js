@@ -4,6 +4,8 @@ import Home from "./js/pages/Home";
 import Pedido from "./js/pages/Pedido";
 import Lote from "./js/pages/Lote";
 import Produto from "./js/pages/Produto";
+import Parada from "./js/pages/Parada";
+import Produtividade from "./js/pages/Produtividade";
 
 import Container from "./js/layouts/Container";
 import Navbar from "./js/layouts/Navbar";
@@ -19,6 +21,8 @@ function App() {
             <Route path="/pedido" element={<Pedido />} />
             <Route path="/lote" element={<Lote />} />
             <Route path="/produto" element={<Produto />} />
+            <Route path="/parada" element={<Parada />} />
+            <Route path="/produtividade" element= {<Produtividade />} />
           </Routes>
         </Container>
         <Footer/>

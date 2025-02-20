@@ -19,17 +19,18 @@ function Navbar(){
                 <Link to="/"><img src={logo} alt="AMG"/></Link>
                 <ul className={styles.list}>
                     <li className={styles.item}><Link to="/">Inicio</Link></li>
-                    
+                    <li className={styles.item}><Link to="/parada">Parada</Link></li>
                     <li className={styles.dropdown} onMouseEnter={() => setDropdownOpen(true) } onMouseLeave={() => setDropdownOpen(false)}>
-                    <span className={styles.dropbtn}>Produção <IoIosArrowDown className={styles.IoIosArrowDown}/></span>
+                        <span className={styles.dropbtn}>Produção <IoIosArrowDown className={styles.IoIosArrowDown}/></span>
                     
-                    {dropdownOpen && (
-                        <ul className={styles.dropdown_content}>
-                            <li><Link to="/pedido">Pedido</Link></li>
-                            <li><Link to="/lote">Lote</Link></li>
-                            <li><Link to ="/produto">Produto</Link></li>
-                        </ul>
-                    )}
+                        {dropdownOpen && (
+                            <ul className={styles.dropdown_content}>
+                                <li><Link to="/pedido">Pedido</Link></li>
+                                <li><Link to="/lote">Lote</Link></li>
+                                <li><Link to ="/produto">Produto</Link></li>
+                                <li><Link to ="/produtividade">Produtividade</Link></li>
+                            </ul>
+                        )}
                     </li>
                     {/* <li className={styles.item}><Link to="/pedido">Pedido</Link></li>
                     <li className={styles.item}><Link to="/lote">Lote</Link></li>
