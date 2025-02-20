@@ -23,3 +23,50 @@
 .item a:hover{
     color: blue;
 }
+.IoIosArrowDown {
+    align-items: center;
+    color: #2273ba;
+}
+
+.dropdown {
+    position: relative;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.dropbtn {
+    color: #2273ba;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown_content {
+    position: absolute;
+    display: flex;
+    top:100%;
+    left:0;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    flex-direction: column;
+    padding: 0;
+}
+
+.dropdown_content li {
+    list-style: none;
+    padding: 10px;
+}
+
+.dropdown_content li a {
+    color: #2273ba;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown_content li a:hover {
+    background-color: #f1f1f1;
+}

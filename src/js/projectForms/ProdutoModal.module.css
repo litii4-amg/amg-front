@@ -1,7 +1,7 @@
 .window {
     position: fixed;
     top: 6rem;
-    left: 7rem;
+    left: 10%;
     width: 80%;
     height: 80%;
     z-index: 1000;
@@ -36,4 +36,23 @@
     position: relative;
     top: 3rem;
     flex-direction: column;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.form_group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form_group input, .form_group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
