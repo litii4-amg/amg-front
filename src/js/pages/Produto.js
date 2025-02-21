@@ -8,7 +8,22 @@ import ProdutoModal from "../projectForms/ProdutoModal";
 
 function Produto() {
 
+    const [produtos, setProdutos] = useState([]);
     const [isProdutoModalOpen, setIsProdutoModalOpen] = useState(false);
+
+    useEffect(() => {
+        async function fetchProdutos() {
+            try {
+                const response = await fetch("http://localhost:3000/produto/");
+                const data = await response.json();
+                console.log(data);
+                setProdutos(data);
+            } catch (error) {
+                console.error("Erro ao carregar os produtos:", error);
+            }
+        }
+        fetchProdutos();
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -24,47 +39,34 @@ function Produto() {
                     </tr>
                 </thead>
                 <tbody className={styles.tbody}>
-                    <tr>
-                        <td>1</td>
-                        <td>Produto 1</td>
-                        <td>1</td>
-                        <td>Nome 1</td>
-                        <td>Acabamento 1</td>
-                        <td>
-                            <button className={styles.button} onClick={() => setIsProdutoModalOpen(true)}>
-                                <FaEye className={styles.icon}/>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Produto 2</td>
-                        <td>2</td>
-                        <td>Nome 2</td>
-                        <td>Acabamento 2</td>
-                        <td>
-                            <button className={styles.button} onClick={() => setIsProdutoModalOpen(true)}>
-                                <FaEye className={styles.icon}/>
-                            </button>
-                            
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>3</td>
-                        <td>Produto 3</td>
-                        <td>3</td>
-                        <td>Nome 3</td>
-                        <td>Acabamento 3</td>
-                        <td>
-                            <button className={styles.button}>
-                                <FaEye className={styles.icon}/>
-                            </button>
-                        </td>
-                    </tr>
+                    {produtos.length > 0 ? (
+                        produtos.map((produto) => (
+                            <tr key={produto.Cod}>
+                                <td>{produto.Cod}</td>
+                                <td>{produto.Tipo}</td>
+                                <td>{produto.Cod_Linha}</td>
+                                <td>{produto.Nome}</td>
+                                <td>{produto.Acabamento}</td>
+                                <td>
+                                    <button
+                                        className={styles.button}
+                                        onClick={() => setIsProdutoModalOpen(true)}
+                                    >
+                                        <FaEye className={styles.icon} />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="6">Carregando produtos...</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
-            <ProdutoModal isOpen={isProdutoModalOpen}  onClose={() => setIsProdutoModalOpen(false)}/>
+            <ProdutoModal 
+                isOpen={isProdutoModalOpen} 
+                onClose={() => setIsProdutoModalOpen(false)}/>
         </div>
     );
 }

@@ -7,6 +7,22 @@ import {FaEye} from "react-icons/fa";
 
 function Produtividade() {
     
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        async function fetchProdutos() {
+            try {
+                const response = await fetch("http://localhost:3000/produtividade/");
+                const data = await response.json();
+                console.log(data);
+                setProdutos(data);
+            } catch (error) {
+                console.error("Erro ao carregar os produtos:", error);
+            }
+        }
+        fetchProdutos();
+    }, []);
+
     return (
         <div className={styles.container}>
             <table className={styles.table}>
@@ -27,23 +43,31 @@ function Produtividade() {
                 </thead>
 
                 <tbody className={styles.tbody}>
-                    <tr>
-                        <td>02/11/2024</td>
-                        <td>BAl 8% WP</td>
-                        <td>24211101001</td>
-                        <td>2400022976</td>
-                        <td>822</td>
-                        <td>3</td>
-                        <td>Roberto</td>
-                        <td>00:37:00</td>
-                        <td>23:58:00</td>
-                        <td>11:21:00</td>
-                        <td>
-                            <button className={styles.button}>
-                                <FaEye className={styles.icon}/>
-                            </button>
-                        </td>
-                    </tr>
+                    {produtos.length > 0 ? (
+                        produtos.map((produto) => (
+                            <tr key={produto.Produto}>
+                                <td>{produto.Data}</td>
+                                <td>{produto.Produto}</td>
+                                <td>{produto.Op}</td>
+                                <td>{produto.Lote}</td>
+                                <td>{produto.Kg}</td>
+                                <td>{produto.Forno}</td>
+                                <td>{produto.Operador}</td>
+                                <td>{produto.HoraInicio}</td>
+                                <td>{produto.HoraFim}</td>
+                                <td>{produto.Duracao}</td>
+                                <td>
+                                    <button className={styles.button}>
+                                        <FaEye className={styles.icon}/>
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="11">Carregando produtos...</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>      
         </div>
