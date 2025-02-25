@@ -1,4 +1,4 @@
-import React, {useState, useEffect, use} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import styles from './ProdutoModal.module.css';
 
@@ -96,10 +96,8 @@ function ProdutoModal({isOpen, onClose, produtoID}) {
                         </div>
                     ))}
                 </div>
-        
             </div>
         </div>
-       
     );
 }
 

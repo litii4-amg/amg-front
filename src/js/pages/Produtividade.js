@@ -4,10 +4,22 @@ import styles from "../../css/Produtividade.module.css"
 
 import {FaEye} from "react-icons/fa";
 
+import ProdutividadeModal from "../projectForms/ProdutividadeModal";
 
 function Produtividade() {
     
+    const [selectedProdutividadetId, setSelectedProdutividadetId] = useState(null);
     const [produtos, setProdutos] = useState([]);
+    const [isProdutividadeModalOpen, setIsProdutividadeModalOpen] = useState(false);
+
+    const openModal = (produtoId) => {
+        setSelectedProdutividadetId(produtoId);
+        setIsProdutividadeModalOpen(true);
+    }
+    const closeModal = () => {
+        setIsProdutividadeModalOpen(false);
+        setSelectedProdutividadetId(null);
+    }
 
     useEffect(() => {
         async function fetchProdutos() {
@@ -57,7 +69,8 @@ function Produtividade() {
                                 <td>{produto.HoraFim}</td>
                                 <td>{produto.Duracao}</td>
                                 <td>
-                                    <button className={styles.button}>
+                                    <button className={styles.button}
+                                        onClick={() => openModal(produto.Produto)}>
                                         <FaEye className={styles.icon}/>
                                     </button>
                                 </td>
@@ -65,11 +78,17 @@ function Produtividade() {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="11">Carregando produtos...</td>
+                            <td colSpan="11">Carregando ...</td>
                         </tr>
                     )}
                 </tbody>
-            </table>      
+            </table> 
+            <ProdutividadeModal
+                isOpen={isProdutividadeModalOpen}
+                onClose={closeModal}
+                produtividadeID={selectedProdutividadetId}
+            
+            />     
         </div>
     );
 }
