@@ -12,7 +12,7 @@ function Produtividade() {
     useEffect(() => {
         async function fetchProdutos() {
             try {
-                const response = await fetch("http://localhost:3000/produtividade/");
+                const response = await fetch("http://localhost:3001/produtividade/");
                 const data = await response.json();
                 console.log(data);
                 setProdutos(data);

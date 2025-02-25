@@ -8,13 +8,23 @@ import ProdutoModal from "../projectForms/ProdutoModal";
 
 function Produto() {
 
+    const [selectedProdutoId, setSelectedProdutoId] = useState(null);
     const [produtos, setProdutos] = useState([]);
     const [isProdutoModalOpen, setIsProdutoModalOpen] = useState(false);
+
+    const openModal = (produtoId) => {
+        setSelectedProdutoId(produtoId);
+        setIsProdutoModalOpen(true);
+    }
+    const closeModal = () => {
+        setIsProdutoModalOpen(false);
+        setSelectedProdutoId(null);
+    }
 
     useEffect(() => {
         async function fetchProdutos() {
             try {
-                const response = await fetch("http://localhost:3000/produto/");
+                const response = await fetch("http://localhost:3001/produto/");
                 const data = await response.json();
                 console.log(data);
                 setProdutos(data);
@@ -50,7 +60,7 @@ function Produto() {
                                 <td>
                                     <button
                                         className={styles.button}
-                                        onClick={() => setIsProdutoModalOpen(true)}
+                                        onClick={() => openModal(produto.Cod)}
                                     >
                                         <FaEye className={styles.icon} />
                                     </button>
@@ -66,7 +76,9 @@ function Produto() {
             </table>
             <ProdutoModal 
                 isOpen={isProdutoModalOpen} 
-                onClose={() => setIsProdutoModalOpen(false)}/>
+                onClose={closeModal}
+                produtoID={selectedProdutoId}
+            />
         </div>
     );
 }
