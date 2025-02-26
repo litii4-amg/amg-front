@@ -5,6 +5,7 @@ import styles from './ProdutoModal.module.css';
 function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
     
     const [produtividadeList, setProdutividadeList] = useState([]);
+    
     useEffect(() => {
         if (isOpen && produtividadeID) {
             fetchProdutividade(produtividadeID);
@@ -25,7 +26,7 @@ function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
             const data = await response.json();
             
             console.log(data);
-            // setProdutividadeList(data);
+            setProdutividadeList(data);
             
         } catch (error) {
             console.error("Erro ao carregar os produtos:", error);

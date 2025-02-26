@@ -29,6 +29,7 @@ function Navbar(){
                                 <li><Link to="/lote">Lote</Link></li>
                                 <li><Link to ="/produto">Produto</Link></li>
                                 <li><Link to ="/produtividade">Produtividade</Link></li>
+                                <li><Link to ="/folhaProducao">Folha de Produção</Link></li>
                             </ul>
                         )}
                     </li>
