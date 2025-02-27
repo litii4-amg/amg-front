@@ -3,70 +3,86 @@ import React, { useState, useEffect } from "react";
 import styles from "../../css/FolhaProducao.module.css"
 
 function FolhaProducao() {
+    
+    const [data, setData] = useState({});
+    
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch("http://localhost:5000/folhaProducao");
+                const data = await response.json();
+                console.log(data[0]);
+                setData(data[0]);
+            } catch (error) {
+                console.error("Erro ao carregar os dados:", error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
     return (
         <div className={styles.container}>
             <h1>Folha de Controle de Processo</h1>
             <div className={styles.section}>
 
                 <div>
-                    <p><strong>Corrida:</strong> 2500001895</p>
-                    <p><strong>Data de Produção:</strong> 28/02/25</p>
-                    <p><strong>Produto:</strong> 00007287-CAAL 6% BARRA</p>
-                    <p><strong>Ordem de Produção:</strong> 24904401001</p>
-                    <p><strong>Cliente:</strong> Não especificado</p>
-                    <p><strong>Operador Leito:</strong> Leandro</p>
-                    <p><strong>Operador Forno:</strong> Matheus Reis</p>
-                    <p><strong>Líder:</strong> E. Simões</p>
+                    <p><strong>Ordem de Produção:</strong> <input name="OrdemdeProducao" value={data.OrdemdeProducao || ""} onChange={handleChange} /></p>
+                    <p><strong>Corrida:</strong> <input name="Corrida" value={data.Corrida || ""} onChange={handleChange} /></p>
+                    <p><strong>Data de Produção:</strong> <input name="DatadeProducao" type="date" value={data.DatadeProducao || ""} onChange={handleChange} /></p>
+                    <p><strong>Produto:</strong> <input name="Produto" value={data.Produto || ""} onChange={handleChange} /></p>
+                    <p><strong>Cliente:</strong> <input name="Cliente" value={data.Cliente || "Não especificado"} onChange={handleChange} /></p>
+                    <p><strong>Operador Leito:</strong> <input name="OperadorLeito" value={data.OperadorLeito || ""} onChange={handleChange} /></p>
+                    <p><strong>Operador Forno:</strong> <input name="OperadorForno" value={data.OperadorForno || ""} onChange={handleChange} /></p>
+                    <p><strong>Líder:</strong> <input name="Lider" value={data.Lider || ""} onChange={handleChange} /></p>
                 </div>
 
                 <div className={styles.section_1}>
                     <table>
                         <thead>
                             <tr>
-                                <th rowspan="2">Leito</th>
-                                <th colspan="1">Fusão</th>
-                                <th colspan="5">Reação</th>
+                                <th rowSpan="2">Leito</th>
+                                <th colSpan="1">Fusão</th>
+                                <th colSpan="5">Reação</th>
                             </tr>
                             <tr>
-                                <th>00011094 - Al P1535</th>
-                                <th>00005012 - Ca Metálico</th>
-                                <th>00011094 - Al P1535</th>
-                                <th>00007287 - Refusão de CaAl 6%</th>
-                                <th>00010786 - Al Reprocessado</th>
-                                <th>00011217 - Fluxo Anteligas</th>
+                                {data.Insumo?.map((insumo, index) => (
+                                    <th key={index}>{insumo}</th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><strong>Peso (kg)</strong></td>
-                                <td>700 ✔</td>
-                                <td>60 ✔</td>
-                                <td>84</td>
-                                <td>366 ✔</td>
-                                <td>40 ❌</td>
-                                <td>5</td>
+                                {data.PesoKG?.map((peso, index) => (
+                                    <td key={index}><input name={`PesoKG_${index}`} value={peso} onChange={handleChange} /></td>
+                                ))}
                             </tr>
                             <tr>
                                 <td><strong>Nº Lote</strong></td>
-                                <td>700</td>
-                                <td>21000</td>
-                                <td>14499</td>
-                                <td>2400002653 - Barra de 3 m</td>
-                                <td>250001632</td>
-                                <td>OK</td>
+                                {data.NLote?.map((lote, index) => (
+                                    <td key={index}><input name={`NLote_${index}`} value={lote} onChange={handleChange} /></td>
+                                ))}
                             </tr>
                             <tr>
                                 <td><strong>Peso Real (kg)</strong></td>
-                                <td>OK</td>
-                                <td>60 ✔</td>
-                                <td></td>
-                                <td></td>
-                                <td>Já está seco e na área</td>
-                                <td></td>
+                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
+                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
+                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
+                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
+                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
+                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
                             </tr>
                             <tr>
                                 <td><strong>Temperatura Al</strong></td>
-                                <td colspan="6">Atenção ao código para empenhar no sistema.</td>
+                                <td colSpan="1"><input name="PesoReal" onChange={handleChange} /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -77,7 +93,7 @@ function FolhaProducao() {
                         <thead>
                             <tr>
                                 <th>Reação</th>
-                                <th colspan="3" >Forno: 06</th>
+                                <th colSpan="3" >Forno: {data.FornoReac}</th>
                             </tr>
                             <tr>
                                 <th>Etapa</th>
@@ -89,15 +105,15 @@ function FolhaProducao() {
                         <tbody>
                             <tr>
                                 <td>Início Adição Ca</td>
-                                <td>14:50</td>
-                                <td>660</td>
-                                <td>230</td>
+                                <td><input name="InicioAdicao" value={data.InicioAdicao || ""} onChange={handleChange} /></td>
+                                <td><input name="InicioAdicaoTemp" value={data.InicioAdicaoTemp || ""} onChange={handleChange} /></td>
+                                <td><input name="InicioAdicaoPot" value={data.InicioAdicaoPot || ""} onChange={handleChange} /></td>
                             </tr>
                             <tr>
                                 <td>Fim Adição Ca</td>
-                                <td>15:30</td>
-                                <td>679</td>
-                                <td>230</td>
+                                <td><input name="FimAdicao" value={data.FimAdicao || ""} onChange={handleChange} /></td>
+                                <td><input name="FimAdicaoTemp" value={data.FimAdicaoTemp || ""} onChange={handleChange} /></td>
+                                <td><input name="FimAdicaoPot" value={data.FimAdicaoPot || ""} onChange={handleChange} /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -107,21 +123,21 @@ function FolhaProducao() {
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Produção(kg)</th>
+                                <th colSpan="2">Produção(kg)</th>
                             </tr>  
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Barra</td>
-                                <td>12544</td>
+                                <td><input name="Barra" value={data.Barra || ""} onChange={handleChange} /></td>
                             </tr>
                             <tr>
                                 <td>WP</td>
-                                <td>1</td>
+                                <td><input name="WP" value={data.WP || ""} onChange={handleChange} /></td>
                             </tr>
                             <tr>
                                 <td>Refusão</td>
-                                <td>0</td>
+                                <td><input name="Refusao" value={data.Refusao || ""} onChange={handleChange} /></td>
                             </tr>
                         </tbody>
                     </table>

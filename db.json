@@ -1,149 +1,74 @@
 {
-  "pedidos": [
+  "folhaProducao": [
     {
-      "cod": 1,
-      "cliente": {
-        "cod": 101,
-        "nome": "Tech Solutions",
-        "estado": "SP"
-      },
-      "data": "2024-02-01",
-      "quantidade": 5
-    },
-    {
-      "cod": 2,
-      "cliente": {
-        "cod": 102,
-        "nome": "Global Trade",
-        "estado": "RJ"
-      },
-      "data": "2024-02-02",
-      "quantidade": 3
-    },
-    {
-      "cod": 3,
-      "cliente": {
-        "cod": 103,
-        "nome": "Agro Business",
-        "estado": "MG"
-      },
-      "data": "2024-02-03",
-      "quantidade": 10
-    },
-    {
-      "cod": 4,
-      "cliente": {
-        "cod": 101,
-        "nome": "Tech Solutions",
-        "estado": "SP"
-      },
-      "data": "2024-02-04",
-      "quantidade": 7
-    },
-    {
-      "cod": 5,
-      "cliente": {
-        "cod": 104,
-        "nome": "Eco Farms",
-        "estado": "PR"
-      },
-      "data": "2024-02-05",
-      "quantidade": 2
-    },
-    {
-      "cod": 6,
-      "cliente": {
-        "cod": 105,
-        "nome": "Solar Tech",
-        "estado": "SC"
-      },
-      "data": "2024-02-06",
-      "quantidade": 4
-    },
-    {
-      "cod": 7,
-      "cliente": {
-        "cod": 106,
-        "nome": "Green Agro",
-        "estado": "RS"
-      },
-      "data": "2024-02-07",
-      "quantidade": 6
-    },
-    {
-      "cod": 8,
-      "cliente": {
-        "cod": 107,
-        "nome": "Fast Logistics",
-        "estado": "SP"
-      },
-      "data": "2024-02-08",
-      "quantidade": 8
-    }
-  ],
-  "lotes":[
-    {
-      "cod": 1,
-      "produto": {
-        "cod": 201,
-        "nome": "AlBe 1%",
-        "composicao": "Alumínio e Berílio 1%"
-      },
-      "quantidade": 50
-    },
-    {
-      "cod": 2,
-      "produto": {
-        "cod": 202,
-        "nome": "BAl 10% Barra",
-        "composicao": "Alumínio e Boro 10% - Forma Barra"
-      },
-      "quantidade": 30
-    },
-    {
-      "cod": 3,
-      "produto": {
-        "cod": 203,
-        "nome": "CUAL 50% WP",
-        "composicao": "Cobre e Alumínio 50% - Forma WP"
-      },
-      "quantidade": 40
-    },
-    {
-      "cod": 4,
-      "produto": {
-        "cod": 204,
-        "nome": "Desoxidante 12mm",
-        "composicao": "Liga para desoxidação - Diâmetro 12mm"
-      },
-      "quantidade": 25
-    },
-    {
-      "cod": 5,
-      "produto": {
-        "cod": 205,
-        "nome": "MgAl 90% (A) WP",
-        "composicao": "Magnésio e Alumínio 90% - Forma WP"
-      },
-      "quantidade": 60
-    },
-    {
-      "cod": 6,
-      "produto": {
-        "cod": 206,
-        "nome": "SrAl 15% Barra",
-        "composicao": "Estrôncio e Alumínio 15% - Forma Barra"
-      },
-      "quantidade": 20
-    },
-    {
-      "cod": 7,
-      "produto": {
-        "cod": 207,
-        "nome": "Liga 6351 9,5mm - (F)",
-        "composicao": "Liga de Alumínio 6351 - Diâmetro 9,5mm"
-      },
-      "quantidade": 35
+      "filename": "Image (1).jpg",
+      "processed_at": "2025-02-27 13:05:25",
+      "Barra": "12544",
+      "CodBarras": "0060,0kg T: 0013,5kg - SEX 07/02/25 02:22:02",
+      "Corrida": "2500001895",
+      "DatadeProducao": "08 02 25",
+      "FimAdicao": "15:20",
+      "FimAdicaoPot": "230",
+      "FimAdicaoTemp": "6796",
+      "FimElevacao": "16:40",
+      "FimElevacaoPot": "360",
+      "FimElevacaoTemp": "7600",
+      "FimEspera": "15:55",
+      "FimEsperaPot": "150",
+      "FimEsperaTemp": "760",
+      "FimLimpezaEspera": "16:45",
+      "FimLimpezaReacao": "J",
+      "FimVaz": "17:35",
+      "FimVazPot": "60",
+      "FornoPrep": "06",
+      "FornoReac": "06",
+      "InicioAdicao": "14:50",
+      "InicioAdicaoPot": "230",
+      "InicioAdicaoTemp": "660℃",
+      "InicioElevacao": "15:20",
+      "InicioElevacaoPot": "350",
+      "InicioElevacaoTemp": "6296",
+      "InicioEspera": "15:40",
+      "InicioEsperaPot": "950",
+      "InicioEsperaTemp": "760",
+      "InicioLimpezaEspera": "16:40",
+      "InicioLimpezaReacao": "1",
+      "InicioVaz": "16:50",
+      "InicioVazPot": "1090",
+      "InicioVazTemp": "7350",
+      "Insumo": [
+          "00011094-Al P1535",
+          "00005012-Ca Metálico",
+          "00011094-AI P1535",
+          "00007287 - Refusão de CaAl 6%",
+          "00010786 - Al Reprocessado",
+          "00011217 - Fluxo Anteligas"
+      ],
+      "Lider": "Elmiban",
+      "MeioVazPot": "90",
+      "NLote": [
+          "700",
+          "24000",
+          "14499"
+      ],
+      "OperadorForno": "Matheus Reis",
+      "OperadorLeito": "Jache",
+      "OrdemdeProducao": [
+          "24904401001",
+          "24904401001"
+      ],
+      "PesoKG": [
+        "700",
+        "60",
+        "84",
+        "366",
+        "40",
+        "5"
+      ],
+      "PesoReal": "601",
+      "ProducaoKG": "12544",
+      "Produto": "00007287-CAAL 6% BARRA",
+      "RoteiroProcesso": "05"
     }
   ]
 }
