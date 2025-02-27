@@ -103,12 +103,29 @@ function FolhaProducao() {
                     </table>
                 </div>
                 
-                {/* <div className={styles.section}>
-                    <h2>Produção</h2>
-                    <p><strong>Barra:</strong> 12544 kg</p>
-                    <p><strong>WP:</strong> 1</p>
-                    <p><strong>Refusão:</strong> Não especificado</p>
-                </div> */}
+                <div className={styles.section_4}>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2">Produção(kg)</th>
+                            </tr>  
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Barra</td>
+                                <td>12544</td>
+                            </tr>
+                            <tr>
+                                <td>WP</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Refusão</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         

@@ -60,3 +60,27 @@
     background-color: #f0f0f0;
 }
 
+.section_4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section_4 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.section_4 table, th, td {
+    border: 1px solid #ddd;
+}
+
+.section_4 th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+.section_4 th {
+    background-color: #f0f0f0;
+}
+
