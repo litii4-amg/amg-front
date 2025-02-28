@@ -69,9 +69,11 @@ function Produtividade() {
                                 <td>{produto.HoraFim}</td>
                                 <td>{produto.Duracao}</td>
                                 <td>
-                                    <button className={styles.button}
-                                        onClick={() => openModal(produto.Produto)}>
-                                        <FaEye className={styles.icon}/>
+                                    <button
+                                        className={styles.button}
+                                        onClick={() => openModal(produto.Produto)}
+                                    >
+                                       <FaEye className={styles.icon}/>
                                     </button>
                                 </td>
                             </tr>
@@ -83,6 +85,13 @@ function Produtividade() {
                     )}
                 </tbody>
             </table> 
+            <button 
+                className={styles.add_button}
+                onClick={() => openModal(null)}
+                >
+                Adicionar
+            </button>
+
             <ProdutividadeModal
                 isOpen={isProdutividadeModalOpen}
                 onClose={closeModal}

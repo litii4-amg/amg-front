@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import styles from './ProdutoModal.module.css';
+import styles from './ProdutividadeModa.module.css';
 
 function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
     
@@ -10,7 +10,18 @@ function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
         if (isOpen && produtividadeID) {
             fetchProdutividade(produtividadeID);
         } else{
-            setProdutividadeList([{ Data: "", Produto: "", Op: "", Lote: "", Kg: "", Forno: "", Operador: "", HoraInicio: "", HoraFim: "", Duracao: "" }]);
+            setProdutividadeList([{
+                Data: "",
+                Produto: "",
+                Op: "",
+                Lote: "",
+                Kg: "",
+                Forno: "", 
+                Operador: "", 
+                HoraInicio: "", 
+                HoraFim: "", 
+                Duracao: "" 
+            }]);
         }
         
     },[isOpen, produtividadeID]);
@@ -43,14 +54,18 @@ function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
                     onClick={onClose}>&times;           
                 </button>
 
-                <h2>Detalhes da Produtividade</h2>
+                {/* <h2>Detalhes da Produtividade</h2> */}
 
                 <div>
 
                     {produtividadeList.map((produtividade, index) => (
                         <div key={produtividade.Produto || index } className={styles.form_group}>
                             <label>Data:</label>
-                            <span>{produtividade.Data}</span>
+                            <input 
+                                type='text'
+                                name = "Data"
+                                value={produtividade.Data}
+                                />
                             
                             <div className={styles.form_group}>
                                 <label>Produto:</label>
@@ -69,27 +84,47 @@ function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
                             
                             <div className={styles.form_group}>
                                 <label>Kg:</label>
-                                <input type='text' name = "Kg" defaultValue={produtividade.Kg}/>
+                                <input 
+                                    type='text' 
+                                    name = "Kg" 
+                                    defaultValue={produtividade.Kg}
+                                />
                             </div>
                             
                             <div className={styles.form_group}>
                                 <label>Forno:</label>
-                                <input type='text' name = "Forno" defaultValue={produtividade.Forno}/>
+                                <input 
+                                    type='text' 
+                                    name = "Forno" 
+                                    defaultValue={produtividade.Forno}
+                                />
                             </div>
                             
                             <div className={styles.form_group}>
                                 <label>Operador:</label>
-                                <input type='text' name = "Operador" defaultValue={produtividade.Operador}/>
+                                <input 
+                                    type='text' 
+                                    name = "Operador" 
+                                    defaultValue={produtividade.Operador}
+                                />
                             </div>
                             
                             <div className={styles.form_group}>
                                 <label>Hora Inicio:</label>
-                                <input type='text' name = "HoraInicio" defaultValue={produtividade.HoraInicio}/>
+                                <input 
+                                    type='text' 
+                                    name = "HoraInicio" 
+                                    defaultValue={produtividade.HoraInicio}
+                                />
                             </div>
                             
                             <div className={styles.form_group}>
                                 <label>Hora Fim:</label>
-                                <input type='text' name = "HoraFim" defaultValue={produtividade.HoraFim}/>
+                                <input 
+                                    type='text' 
+                                    name = "HoraFim" 
+                                    defaultValue={produtividade.HoraFim}
+                                />
                             </div>
                             
                             <div className={styles.form_group}>
@@ -99,6 +134,20 @@ function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
                         </div>
                     ))}
 
+                </div>
+                <div className={styles.button_group}>
+                    <button 
+                        className={styles.button}
+                    >
+                        {produtividadeID ? 'Confirmar' : 'Adicionar'} 
+                    </button>
+                    
+                    <button 
+                        className={styles.button} 
+                        onClick={onClose}
+                    >
+                        Cancelar
+                    </button>
                 </div>
             </div>
         </div>

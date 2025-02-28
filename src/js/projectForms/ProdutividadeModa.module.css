@@ -1,0 +1,86 @@
+.window {
+    position: fixed;
+    top: 6rem;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 10px;
+}
+
+.window_content {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.close_button {
+    position: absolute;
+    top: 0.1rem;
+    right: 10px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.window_content form {
+    position: relative;
+    top: 3rem;
+    flex-direction: column;
+}
+.window_content div{
+    display: flex;
+    /* flex-direction: column; */
+    width: 100%;
+    height: 100%;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 80%;
+}
+
+.form_group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form_group input, .form_group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button_group {
+    margin-top: 17rem;
+    width: 20%;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+.button_group button{
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #2273ba;
+    color: white;
+}
+
+.button_group button:hover {
+    background-color: #1d5aa3;
+}
