@@ -30,6 +30,8 @@ function Navbar(){
                                 <li><Link to ="/produto">Produto</Link></li>
                                 <li><Link to ="/produtividade">Produtividade</Link></li>
                                 <li><Link to ="/folhaProducao">Folha de Produção</Link></li>
+                                <li><Link to ="/folhaProducaoAudio">Folha de Produção Audio</Link></li>
+                                <li><Link to ="/folhaProducaoDados">Folha de Produção Dados</Link></li>
                             </ul>
                         )}
                     </li>

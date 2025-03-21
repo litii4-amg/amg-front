@@ -5,6 +5,7 @@ import styles from "../../css/FolhaProducao.module.css"
 function FolhaProducao() {
     
     const [data, setData] = useState({});
+    const [dataAudio, setDataAudio] = useState({});
     
     useEffect(() => {
         async function fetchData() {
@@ -20,12 +21,55 @@ function FolhaProducao() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch("http://localhost:5000/folhaProducaoAudio");
+                const dataAudio = await response.json();
+                console.log(dataAudio[0]);
+                setDataAudio(dataAudio[0]);
+            } catch (error) {
+                console.error("Erro ao carregar os dados:", error);
+            }
+        }
+        fetchData();
+    },[]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setData(prevData => ({
             ...prevData,
             [name]: value
         }));
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        // Mapeando os dados para o formato do banco de dados
+        const payload = {
+            cod: data.Corrida, // Corrida
+            datadeproducao: data.DatadeProducao, // Data de Produção
+            codigoOp: data.OrdemdeProducao, // Ordem de Produção (Código OP)
+            codProduto: data.NLote, // Lote = codProduto
+            data_inicio: data.DatadeProducao, // Data Início
+            hora_inicioAdicnio: data.InicioAdicao, // Hora Início Adição
+            producaoKg_corrida_qtdPrevista: data.ProducaoKG 
+        };
+    
+        // Aqui você pode enviar os dados para o backend (supondo que seja um POST)
+        try {
+            const response = await fetch("http://localhost:5000/salvarDados", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload),
+            });
+            const result = await response.json();
+            console.log("Dados enviados com sucesso:", result);
+        } catch (error) {
+            console.error("Erro ao enviar dados:", error);
+        }
     };
 
     return (
@@ -39,9 +83,9 @@ function FolhaProducao() {
                     <p><strong>Data de Produção:</strong> <input name="DatadeProducao" type="date" value={data.DatadeProducao || ""} onChange={handleChange} /></p>
                     <p><strong>Produto:</strong> <input name="Produto" value={data.Produto || ""} onChange={handleChange} /></p>
                     <p><strong>Cliente:</strong> <input name="Cliente" value={data.Cliente || "Não especificado"} onChange={handleChange} /></p>
-                    <p><strong>Operador Leito:</strong> <input name="OperadorLeito" value={data.OperadorLeito || ""} onChange={handleChange} /></p>
-                    <p><strong>Operador Forno:</strong> <input name="OperadorForno" value={data.OperadorForno || ""} onChange={handleChange} /></p>
-                    <p><strong>Líder:</strong> <input name="Lider" value={data.Lider || ""} onChange={handleChange} /></p>
+                    <p><strong>Operador Leito:</strong> <input name="OperadorLeito" value={dataAudio.OperadorLeito || ""} onChange={handleChange} /></p>
+                    <p><strong>Operador Forno:</strong> <input name="OperadorForno" value={dataAudio.OperadorForno || ""} onChange={handleChange} /></p>
+                    <p><strong>Líder:</strong> <input name="Lider" value={dataAudio.Lider || ""} onChange={handleChange} /></p>
                 </div>
 
                 <div className={styles.section_1}>
@@ -143,6 +187,10 @@ function FolhaProducao() {
                     </table>
                 </div>
             </div>
+            <form onSubmit={handleSubmit}>
+                {/* Seu código de inputs aqui */}
+                <button type="submit">Enviar</button>
+            </form>
         </div>
         
     );

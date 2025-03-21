@@ -70,5 +70,19 @@
       "Produto": "00007287-CAAL 6% BARRA",
       "RoteiroProcesso": "05"
     }
+  ],
+  "folhaProducaoAudio": [
+    {
+    "OperadorForno": "Matheus Reis",
+    "Turma": "",
+    "Barra": "",
+    "DatadeProducao": "",
+    "OperadorLeito": "Leandro",
+    "RoteiroDeProcesso": "",
+    "Corrida": "",
+    "FimAdicao": "",
+    "Lider": "Edmilson",
+    "InicioAdicao": ""
+    }
   ]
 }

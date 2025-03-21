@@ -7,6 +7,8 @@ import Produto from "./js/pages/Produto";
 import Parada from "./js/pages/Parada";
 import Produtividade from "./js/pages/Produtividade";
 import FolhaProducao from "./js/pages/FolhaProducao";
+import FolhaProducaoAudio from "./js/pages/FolhaProducaoAudio";
+import FolhaProducaoDados from "./js/pages/FolhaProducaoDados";
 
 import Container from "./js/layouts/Container";
 import Navbar from "./js/layouts/Navbar";
@@ -25,6 +27,8 @@ function App() {
             <Route path="/parada" element={<Parada />} />
             <Route path="/produtividade" element= {<Produtividade />} />
             <Route path="/folhaProducao" element={<FolhaProducao />} />
+            <Route path="/folhaProducaoAudio" element={<FolhaProducaoAudio />} />
+            <Route path="/folhaProducaoDados" element={<FolhaProducaoDados />} />
           </Routes>
         </Container>
         <Footer/>
