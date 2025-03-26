@@ -9,7 +9,7 @@ function FolhaProducaoDados() {
         async function fetchData(){
             try{
 
-                const response = await axios.get("http://localhost:3001/jsonFolha/getJson");
+                const response = await axios.get("http://34.44.210.41:3001/jsonFolha/getJson");
                 //console.log(response.data[0].folhaProducao);
                 setData(response.data[0].folhaProducao);
             }catch(error){
@@ -49,7 +49,7 @@ function FolhaProducaoDados() {
         
         //console.log(payload);
         try{
-            await axios.post("http://localhost:3001/jsonFolha/createFolhaCorrida", payload);
+            await axios.post("http://34.44.210.41:3001/jsonFolha/createFolhaCorrida", payload);
             alert("Dados salvos com sucesso!");
         }catch(error){
             console.error("Erro ao salvar os dados:", error);
