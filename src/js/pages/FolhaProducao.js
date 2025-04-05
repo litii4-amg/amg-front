@@ -1,39 +1,25 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 
 import styles from "../../css/FolhaProducao.module.css"
 
 function FolhaProducao() {
     
     const [data, setData] = useState({});
-    const [dataAudio, setDataAudio] = useState({});
     
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("http://localhost:5000/folhaProducao");
-                const data = await response.json();
-                console.log(data[0]);
-                setData(data[0]);
+                const response = await axios.get("http://localhost:3001/jsonFolha/getJson");
+                console.log(response.data[0]);
+                setData(response.data[0]);
             } catch (error) {
                 console.error("Erro ao carregar os dados:", error);
             }
         }
         fetchData();
     }, []);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch("http://localhost:5000/folhaProducaoAudio");
-                const dataAudio = await response.json();
-                console.log(dataAudio[0]);
-                setDataAudio(dataAudio[0]);
-            } catch (error) {
-                console.error("Erro ao carregar os dados:", error);
-            }
-        }
-        fetchData();
-    },[]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,33 +28,63 @@ function FolhaProducao() {
             [name]: value
         }));
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Mapeando os dados para o formato do banco de dados
+        // Dados para o serem salvos no banco de dados
+        
         const payload = {
-            cod: data.Corrida, // Corrida
-            datadeproducao: data.DatadeProducao, // Data de Produção
-            codigoOp: data.OrdemdeProducao, // Ordem de Produção (Código OP)
-            codProduto: data.NLote, // Lote = codProduto
-            data_inicio: data.DatadeProducao, // Data Início
-            hora_inicioAdicnio: data.InicioAdicao, // Hora Início Adição
-            producaoKg_corrida_qtdPrevista: data.ProducaoKG 
+            Corrida: data.Corrida, 
+            DatadeProducao: data.DatadeProducao, 
+            CodBarras: data.CodBarras,
+            FimAdicao: data.FimAdicao,
+            FimAdicaoPot: data.FimAdicaoPot,
+            FimAdicaoTemp: data.FimAdicaoTemp,
+            FimElevacao: data.FimElevacao ,
+            FimElevacaoPot: data.FimElevacaoPot,
+            FimElevacaoTemp: data.FimElevacaoTemp,
+            FimEspera: data.FimEspera,
+            FimEsperaPot: data.FimEsperaPot,
+            FimEsperaTemp: data.FimEsperaTemp,
+            FimLimpezaEspera: data.FimLimpezaEspera,
+            FimLimpezaReacao: data.FimLimpezaReacao,
+            FimVaz: data.FimVaz,
+            FimVazPot: data.FimVazPot,
+            FornoPrep: data.FornoPrep,
+            FornoReac: data.FornoReac,
+            InicioAdicao: data.InicioAdicao,
+            InicioAdicaoPot: data.InicioAdicaoPot,
+            InicioAdicaoTemp: data.InicioAdicaoTemp,
+            InicioElevacao: data.InicioElevacao,
+            InicioElevacaoPot: data.InicioElevacaoPot,
+            InicioElevacaoTemp: data.InicioElevacaoTemp,
+            InicioEspera: data.InicioEspera,
+            InicioEsperaPot: data.InicioEsperaPot,
+            InicioEsperaTemp: data.InicioEsperaTemp,
+            InicioLimpezaEspera: data.InicioLimpezaEspera,
+            InicioLimpezaReacao: data.InicioLimpezaReacao,
+            InicioVaz: data.InicioVaz,
+            InicioVazPot: data.InicioVazPot,
+            InicioVazTemp: data.InicioVazTemp,
+            Insumo: data.Insumo,
+            NLote: data.NLote ,
+            OrdemdeProducao: data.OrdemdeProducao,
+            PesoKG: data.PesoKG,
+            Lider: data.Lider,
+            OperadorForno: data.OperadorForno,
+            OperadorLeito: data.OperadorLeito,
+            PesoReal: data.PesoReal,
+            ProducaoKG: data.ProducaoKG,
+            Produto: data.Produto,
+            RoteiroProcesso: data.RoteiroProcesso
         };
     
-        // Aqui você pode enviar os dados para o backend (supondo que seja um POST)
-        try {
-            const response = await fetch("http://localhost:5000/salvarDados", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload),
-            });
-            const result = await response.json();
-            console.log("Dados enviados com sucesso:", result);
-        } catch (error) {
-            console.error("Erro ao enviar dados:", error);
+        try{
+            await axios.post("http://localhost:3001/jsonFolha/createFolhaUnificada", payload);
+            alert("Dados salvos com sucesso!");
+        }catch(error){
+            console.error("Erro ao salvar os dados:", error);  
         }
     };
 
@@ -83,9 +99,9 @@ function FolhaProducao() {
                     <p><strong>Data de Produção:</strong> <input name="DatadeProducao" type="date" value={data.DatadeProducao || ""} onChange={handleChange} /></p>
                     <p><strong>Produto:</strong> <input name="Produto" value={data.Produto || ""} onChange={handleChange} /></p>
                     <p><strong>Cliente:</strong> <input name="Cliente" value={data.Cliente || "Não especificado"} onChange={handleChange} /></p>
-                    <p><strong>Operador Leito:</strong> <input name="OperadorLeito" value={dataAudio.OperadorLeito || ""} onChange={handleChange} /></p>
-                    <p><strong>Operador Forno:</strong> <input name="OperadorForno" value={dataAudio.OperadorForno || ""} onChange={handleChange} /></p>
-                    <p><strong>Líder:</strong> <input name="Lider" value={dataAudio.Lider || ""} onChange={handleChange} /></p>
+                    <p><strong>Operador Leito:</strong> <input name="OperadorLeito" value={data.OperadorLeito || ""} onChange={handleChange} /></p>
+                    <p><strong>Operador Forno:</strong> <input name="OperadorForno" value={data.OperadorForno || ""} onChange={handleChange} /></p>
+                    <p><strong>Líder:</strong> <input name="Lider" value={data.Lider || ""} onChange={handleChange} /></p>
                 </div>
 
                 <div className={styles.section_1}>
@@ -106,13 +122,17 @@ function FolhaProducao() {
                             <tr>
                                 <td><strong>Peso (kg)</strong></td>
                                 {data.PesoKG?.map((peso, index) => (
-                                    <td key={index}><input name={`PesoKG_${index}`} value={peso} onChange={handleChange} /></td>
+                                    <td key={index}>
+                                        <input name={`PesoKG_${index}`} value={peso} onChange={handleChange} />
+                                    </td>
                                 ))}
                             </tr>
                             <tr>
                                 <td><strong>Nº Lote</strong></td>
                                 {data.NLote?.map((lote, index) => (
-                                    <td key={index}><input name={`NLote_${index}`} value={lote} onChange={handleChange} /></td>
+                                    <td key={index}>
+                                        <input name={`NLote_${index}`} value={lote} onChange={handleChange} />
+                                    </td>
                                 ))}
                             </tr>
                             <tr>

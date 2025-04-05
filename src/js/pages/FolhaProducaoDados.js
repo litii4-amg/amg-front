@@ -10,8 +10,8 @@ function FolhaProducaoDados() {
             try{
 
                 const response = await axios.get("http://34.44.210.41:3001/jsonFolha/getJson");
-                //console.log(response.data[0].folhaProducao);
-                setData(response.data[0].folhaProducao);
+                console.log(response.data[0].text);
+                setData(response.data[0].text);
             }catch(error){
                 console.error("Erro ao carregar os dados:", error);
             }
@@ -38,18 +38,54 @@ function FolhaProducaoDados() {
         console.log(formattedDataInicio);
         
         const payload = {
-            cod: data.Corrida,
-            codOp:"24904401001",
-            lote:"10211967",
-            data_inicio: formattedDataInicio,
-            data_fim: formattedDataFim,
-            quantidade_produzida: data.ProducaoKG,
-            quantidade_prevista:"0"
+            Corrida: data.Corrida || data.NLote, 
+            DatadeProducao: data.DatadeProducao, 
+            CodBarras: data.CodBarras,
+            FimAdicao: data.FimAdicao,
+            FimAdicaoPot: data.FimAdicaoPot,
+            FimAdicaoTemp: data.FimAdicaoTemp,
+            FimElevacao: data.FimElevacao ,
+            FimElevacaoPot: data.FimElevacaoPot,
+            FimElevacaoTemp: data.FimElevacaoTemp,
+            FimEspera: data.FimEspera,
+            FimEsperaPot: data.FimEsperaPot,
+            FimEsperaTemp: data.FimEsperaTemp,
+            FimLimpezaEspera: data.FimLimpezaEspera,
+            FimLimpezaReacao: data.FimLimpezaReacao,
+            FimVaz: data.FimVaz,
+            FimVazPot: data.FimVazPot,
+            FornoPrep: data.FornoPrep,
+            FornoReac: data.FornoReac,
+            InicioAdicao: data.InicioAdicao,
+            InicioAdicaoPot: data.InicioAdicaoPot,
+            InicioAdicaoTemp: data.InicioAdicaoTemp,
+            InicioElevacao: data.InicioElevacao,
+            InicioElevacaoPot: data.InicioElevacaoPot,
+            InicioElevacaoTemp: data.InicioElevacaoTemp,
+            InicioEspera: data.InicioEspera,
+            InicioEsperaPot: data.InicioEsperaPot,
+            InicioEsperaTemp: data.InicioEsperaTemp,
+            InicioLimpezaEspera: data.InicioLimpezaEspera,
+            InicioLimpezaReacao: data.InicioLimpezaReacao,
+            InicioVaz: data.InicioVaz,
+            InicioVazPot: data.InicioVazPot,
+            InicioVazTemp: data.InicioVazTemp,
+            Insumo: data.Insumo,
+            NLote: data.NLote ,
+            OrdemdeProducao: data.OrdemdeProducao,
+            PesoKG: data.PesoKG,
+            Lider: data.Lider,
+            OperadorForno: data.OperadorForno,
+            OperadorLeito: data.OperadorLeito,
+            PesoReal: data.PesoReal,
+            ProducaoKG: data.ProducaoKG,
+            Produto: data.Produto,
+            RoteiroProcesso: data.RoteiroProcesso
         };
         
         //console.log(payload);
         try{
-            await axios.post("http://34.44.210.41:3001/jsonFolha/createFolhaCorrida", payload);
+            await axios.post("http://localhost:3001/jsonFolha/createFolhaUnificada", payload);
             alert("Dados salvos com sucesso!");
         }catch(error){
             console.error("Erro ao salvar os dados:", error);
@@ -71,3 +107,5 @@ function FolhaProducaoDados() {
 }
 
 export default FolhaProducaoDados;
+
+//Salvar um timestamp no banco de dados para checkar o tempo de resposta do servidor
