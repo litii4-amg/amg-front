@@ -97,7 +97,10 @@ function FolhaProducaoDados() {
             <h1>Dados Escaneados</h1>
             <div>
                 {Object.entries(data).map(([key, value]) => (
-                    <p key={key}><strong>{key}:</strong> {Array.isArray(value) ? value.join(", ") : value}</p>
+                    <p key={key}>
+                        <strong>{key}:</strong> 
+                        {Array.isArray(value) ? value.join(", ") : value}
+                    </p>
                 ))}
             </div>
 
