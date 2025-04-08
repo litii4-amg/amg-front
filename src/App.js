@@ -9,6 +9,7 @@ import Produtividade from "./js/pages/Produtividade";
 import FolhaProducao from "./js/pages/FolhaProducao";
 import FolhaProducaoAudio from "./js/pages/FolhaProducaoAudio";
 import FolhaProducaoDados from "./js/pages/FolhaProducaoDados";
+import FolhaProduFront from "./js/pages/FolhaProduFront";
 
 import Container from "./js/layouts/Container";
 import Navbar from "./js/layouts/Navbar";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/folhaProducao" element={<FolhaProducao />} />
             <Route path="/folhaProducaoAudio" element={<FolhaProducaoAudio />} />
             <Route path="/folhaProducaoDados" element={<FolhaProducaoDados />} />
+            <Route path="/folhaProduFront" element={<FolhaProduFront />} />
           </Routes>
         </Container>
         <Footer/>

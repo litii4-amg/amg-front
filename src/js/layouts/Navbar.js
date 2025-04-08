@@ -32,6 +32,7 @@ function Navbar(){
                                 <li><Link to ="/folhaProducao">Folha de Produção</Link></li>
                                 <li><Link to ="/folhaProducaoAudio">Folha de Produção Audio</Link></li>
                                 <li><Link to ="/folhaProducaoDados">Folha de Produção Dados</Link></li>
+                                <li><Link to ="/folhaProduFront">Folha de Produção Front</Link></li>
                             </ul>
                         )}
                     </li>

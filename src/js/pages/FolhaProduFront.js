@@ -6,7 +6,13 @@ import styles from "../../css/FolhaProducao.module.css"
 
 function FolhaProducao() {
     
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        Insumos: [],       // nomes dos insumos (para título das colunas)
+        PesoKG: [],
+        NLote: [],
+        PesoReal: []
+    });
+    
     
     useEffect(() => {
         async function fetchData() {
@@ -20,6 +26,37 @@ function FolhaProducao() {
         }
         fetchData();
     }, []);
+
+    const handleInsumoChange = (index, field, value) => {
+        const updatedInsumos = [...data.Insumos];
+        updatedInsumos[index][field] = value;
+        setData(prevData => ({
+            ...prevData,
+            Insumos: updatedInsumos
+        }));
+    };
+
+    const addInsumo = () => {
+        setData(prevData => ({
+            ...prevData,
+            Insumos: [...(prevData.Insumos || []), ""],
+            PesoKG: [...(prevData.PesoKG || []), ""],
+            NLote: [...(prevData.NLote || []), ""],
+            PesoReal: [...(prevData.PesoReal || []), ""]
+        }));
+    };
+
+    const handleInsumoNomeChange = (index, value) => {
+        const updated = [...data.Insumos];
+        updated[index] = value;
+        setData(prevData => ({ ...prevData, Insumos: updated }));
+    };
+    
+    const handleArrayChange = (field, index, value) => {
+        const updated = [...data[field]];
+        updated[index] = value;
+        setData(prevData => ({ ...prevData, [field]: updated }));
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -67,7 +104,7 @@ function FolhaProducao() {
             InicioVaz: data.InicioVaz,
             InicioVazPot: data.InicioVazPot,
             InicioVazTemp: data.InicioVazTemp,
-            Insumo: data.Insumo,
+            Insumo: data.Insumos,
             NLote: data.NLote ,
             OrdemdeProducao: data.OrdemdeProducao,
             PesoKG: data.PesoKG,
@@ -103,50 +140,63 @@ function FolhaProducao() {
                     <p><strong>Operador Forno:</strong> <input name="OperadorForno" value={data.OperadorForno || ""} onChange={handleChange} /></p>
                     <p><strong>Líder:</strong> <input name="Lider" value={data.Lider || ""} onChange={handleChange} /></p>
                 </div>
-
+                <button type="button" onClick={addInsumo}>Adicionar Insumo</button>
+                
                 <div className={styles.section_1}>
                     <table>
                         <thead>
                             <tr>
-                                <th rowSpan="2">Leito</th>
-                                <th colSpan="1">Fusão</th>
-                                <th colSpan="5">Reação</th>
-                            </tr>
-                            <tr>
-                                {data.Insumo?.map((insumo, index) => (
-                                    <th key={index}>{insumo}</th>
+                                <th>Leito</th>
+                                {data.Insumos?.map((insumo, index) => (
+                                    <th key={index}>
+                                        <input
+                                            value={insumo}
+                                            onChange={(e) => handleInsumoNomeChange(index, e.target.value)}
+                                            placeholder="Nome do insumo"
+                                        />
+                                    </th>
                                 ))}
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Peso (kg)</strong></td>
+                                <td>
+                                    <strong>Peso (kg)</strong>
+                                </td>
                                 {data.PesoKG?.map((peso, index) => (
                                     <td key={index}>
-                                        <input name={`PesoKG_${index}`} value={peso} onChange={handleChange} />
+                                        <input
+                                            value={peso}
+                                            onChange={(e) => handleArrayChange("PesoKG", index, e.target.value)}
+                                        />
                                     </td>
                                 ))}
                             </tr>
                             <tr>
-                                <td><strong>Nº Lote</strong></td>
+                                <td>
+                                    <strong>Nº Lote</strong>
+                                </td>
                                 {data.NLote?.map((lote, index) => (
                                     <td key={index}>
-                                        <input name={`NLote_${index}`} value={lote} onChange={handleChange} />
+                                        <input
+                                            value={lote}
+                                            onChange={(e) => handleArrayChange("NLote", index, e.target.value)}
+                                        />
                                     </td>
                                 ))}
                             </tr>
                             <tr>
-                                <td><strong>Peso Real (kg)</strong></td>
-                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
-                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
-                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
-                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
-                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
-                                <td><input name="PesoReal" value={data.PesoReal || ""} onChange={handleChange} /></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Temperatura Al</strong></td>
-                                <td colSpan="1"><input name="PesoReal" onChange={handleChange} /></td>
+                                <td>
+                                    <strong>Peso Real (kg)</strong>
+                                </td>
+                                {data.PesoReal?.map((real, index) => (
+                                    <td key={index}>
+                                        <input
+                                            value={real}
+                                            onChange={(e) => handleArrayChange("PesoReal", index, e.target.value)}
+                                        />
+                                    </td>
+                                ))}
                             </tr>
                         </tbody>
                     </table>
