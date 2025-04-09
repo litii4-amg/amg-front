@@ -11,9 +11,9 @@ function FolhaProducao() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://localhost:3001/jsonFolha/getJson");
-                console.log(response.data[0]);
-                setData(response.data[0]);
+                const response = await axios.get("http://34.44.210.41:3001/jsonFolha/getJson");
+                console.log(response.data[0].text);
+                setData(response.data[0].text);
             } catch (error) {
                 console.error("Erro ao carregar os dados:", error);
             }
@@ -81,7 +81,7 @@ function FolhaProducao() {
         };
     
         try{
-            await axios.post("http://localhost:3001/jsonFolha/createFolhaUnificada", payload);
+            await axios.post("http://34.44.210.41:3001/jsonFolha/createFolhaUnificada", payload);
             alert("Dados salvos com sucesso!");
         }catch(error){
             console.error("Erro ao salvar os dados:", error);  

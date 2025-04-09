@@ -10,7 +10,7 @@ function FolhaProducaoDados() {
             try{
 
                 const response = await axios.get("http://34.44.210.41:3001/jsonFolha/getJson");
-                console.log(response.data[0].text);
+                //console.log(response.data[0].text);
                 setData(response.data[0].text);
             }catch(error){
                 console.error("Erro ao carregar os dados:", error);
@@ -27,17 +27,18 @@ function FolhaProducaoDados() {
             return;
         } 
 
-        const convertDateFormat = (dateString) => {
-            const parts = dateString.split(" "); // Exemplo: '08 02 25'
-            return `20${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`; // Formato 'YYYY-MM-DD'
-        };
+        // const convertDateFormat = (dateString) => {
+        //     const parts = dateString.split(" "); // Exemplo: '08 02 25'
+        //     return `20${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`; // Formato 'YYYY-MM-DD'
+        // };
         
-        const formattedDataInicio = convertDateFormat(data.DatadeProducao); // Converte a data
-        const formattedDataFim = formattedDataInicio;  // Se você usar a mesma data para o início e fim
+        // const formattedDataInicio = convertDateFormat(data.DatadeProducao); // Converte a data
+        // const formattedDataFim = formattedDataInicio;  // Se você usar a mesma data para o início e fim
         
-        console.log(formattedDataInicio);
+        console.log(data);
         
         const payload = {
+            
             Corrida: data.Corrida || data.NLote, 
             DatadeProducao: data.DatadeProducao, 
             CodBarras: data.CodBarras,
