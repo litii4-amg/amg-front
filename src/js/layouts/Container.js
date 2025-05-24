@@ -1,3 +1,4 @@
+import React from "react";
 import style from '../../css/Container.module.css';
 
 function Container(props) {
