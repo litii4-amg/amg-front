@@ -32,10 +32,11 @@ function FolhaProducao() {
                 const folhaData = await Promise.all(
                     files.map(async (filePath)=>{
                         
-                        let [ano, mes, dia, corrida] = filePath.split('/'); 
+                        let [ano, mes, corrida] = filePath.split('/'); 
                         corrida = corrida.split('.')[0];
                         console.log(corrida);
                         const jsonData = await axios.get(`http://localhost:3001/jsonFolha/findFile/${corrida}`)
+                        console.log(jsonData.data);
                         return jsonData.data
                     })
                 );
@@ -66,15 +67,17 @@ function FolhaProducao() {
 
                         <tbody>
                             {folhas.length > 0 ? (
+                                
                                 folhas.map((folha)=>(
-                                    <tr key ={folha.Corrida}>
-                                        <td>{folha.Corrida}</td>
-                                        <td>{folha.Produto}</td>
-                                        <td>{folha.DatadeProducao}</td>
+                                    
+                                    <tr key ={folha.extracted_data.corrida}>
+                                        <td>{folha.extracted_data.corrida}</td>
+                                        <td>{folha.extracted_data.produto}</td>
+                                        <td>{folha.extracted_data.dataDeProducao}</td>
                                         <td>
                                             <button
                                                 className={styles.button}
-                                                onClick={()=>openModal(folha.Corrida)}
+                                                onClick={()=>openModal(folha.extracted_data.corrida)}
                                             >Visualizar</button>
                                         </td>
                                     </tr>
