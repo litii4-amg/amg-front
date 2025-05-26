@@ -7,7 +7,6 @@
     border: 1px solid #ddd;
     background-color: #f9f9f9;
 }
-
 .container h1 {
     text-align: center;
     color: #333;
@@ -16,7 +15,6 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
 .section_1 table {
     width: 80%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -33,12 +31,17 @@
     padding: 0,5rem;
     text-align: center;
 }
-
+.section table tbody td{
+    text-align: center;
+}
 .section_1 table tbody tr:nth-child(even){
     background-color: #deebf7;
 }
-
 .section table tbody tr:hover{
     background-color: #deebf7;
 }
-
+.button {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}

@@ -3,12 +3,25 @@ import axios from "axios";
 
 import styles from "../../css/FolhasDigitalizadas.module.css"
 
+import FolhaDigitalizadaModal from "../projectForms/FolhaDigitalizadaModal";
+
 function FolhaProducao() {
     
+    const [selectedFolha, setSelectedFolha] = useState(null);
     const [folhas, setFolhas] = useState([]);
+    const [isFolhaModalOpen, setIsFolhaModalOpen] = useState(false);
     
-    //so um detalhe que fazer antes de realizar o get para pegar os dados é que minha api busca é por corrida e a corrida esta presente no nome do arquivo '2025/Abril/dia-08/00001823335.json', que é o número.
+    const openModal = (corrida)=>{
+        setSelectedFolha(corrida);
+        setIsFolhaModalOpen(true);
+    }
+    const closeModal = ()=>{
+        setIsFolhaModalOpen(false);
+        setSelectedFolha(null);
+    }
+
     useEffect(() => {
+
         async function fetchFolhas() {
             try {
                 const response = await axios.get("http://localhost:3001/jsonFolha/listAllFiles");
@@ -58,6 +71,12 @@ function FolhaProducao() {
                                         <td>{folha.Corrida}</td>
                                         <td>{folha.Produto}</td>
                                         <td>{folha.DatadeProducao}</td>
+                                        <td>
+                                            <button
+                                                className={styles.button}
+                                                onClick={()=>openModal(folha.Corrida)}
+                                            >Visualizar</button>
+                                        </td>
                                     </tr>
                                 ))
                             ):(
@@ -68,10 +87,14 @@ function FolhaProducao() {
 
                         </tbody>
                    </table>
+                   <FolhaDigitalizadaModal
+                        isOpen={isFolhaModalOpen}
+                        onClose={closeModal}
+                        numDaCorrida={selectedFolha}
+                   />
                 </div>
             </div>
         </div>
-        
     );
 }
 
