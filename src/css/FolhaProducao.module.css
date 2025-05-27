@@ -1,87 +1,78 @@
-.container {
-    margin-right: 20%;
-    margin-top: 1%;
-    width: 105%;
-    font-family: Arial, sans-serif;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+/* FolhaDigitalizadaModal.module.css */
 
+.window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* escurece o fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  z-index: 999;
 }
 
-.container h1 {
-    text-align: center;
-    color: #333;
-}
-.section_1 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.section_1 table {
-    width: 70%;
-    border-collapse: collapse;
-    margin-top: 10px;
+.window_content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-.section_1 table, th, td {
-    border: 1px solid #ddd;
+.close_button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.section_1 th, td {
-    padding: 8px;
-    text-align: left;
+.title {
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.section_1 th {
-    background-color: #f0f0f0;
+.fixed_info p {
+  margin: 4px 0;
 }
 
-.section_2 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.data_list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.section_2 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+.data_item {
+  background-color: #f9f9f9;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.section_2 table, th, td {
-    border: 1px solid #ddd;
+.data_text {
+  flex-grow: 1;
 }
 
-.section_2 th, td {
-    padding: 8px;
-    text-align: left;
+.data_actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #444;
 }
 
-.section_2 th {
-    background-color: #f0f0f0;
+.data_actions button:hover {
+  color: #007bff;
 }
-
-.section_4 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.section_4 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.section_4 table, th, td {
-    border: 1px solid #ddd;
-}
-
-.section_4 th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-.section_4 th {
-    background-color: #f0f0f0;
-}
-

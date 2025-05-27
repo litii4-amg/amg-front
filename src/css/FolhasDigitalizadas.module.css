@@ -1,5 +1,4 @@
 .container {
-    margin-right: 20%;
     margin-top: 1%;
     width: 105%;
     font-family: Arial, sans-serif;
@@ -12,6 +11,9 @@
     color: #333;
 }
 .section_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -44,4 +46,94 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
+}
+
+.window {
+  position: fixed; 
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* escurece fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* acima do restante da interface */
+}
+
+.window_content {
+  background: white;
+  padding: 2rem;
+  width: 80%;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.close_button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 0;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.fixed_info p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+.data_list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.data_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.data_text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.data_actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.data_actions button {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.data_actions button:hover {
+  color: #007bff;
 }
