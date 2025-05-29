@@ -46,6 +46,7 @@ function FolhaDigitalizadaModal({ isOpen, onClose, folha }) {
 
         <h3>Outros Dados:</h3>
         <div className={styles.data_list}>
+          {console.log(dados)}
           {Object.entries(dados).map(([key, value]) => (
             <div key={key} className={styles.data_item}>
               <div className={styles.data_text}>
