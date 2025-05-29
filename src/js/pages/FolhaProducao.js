@@ -8,7 +8,7 @@ import FolhaDigitalizadaModal from "../projectForms/FolhaDigitalizadaModal";
 function FolhaProducao() {
     
     const [selectedFolha, setSelectedFolha] = useState(null);
-    const [folhas, setFolhas] = useState([]);
+    const [folhas,setFolhas] = useState([]);
     const [isFolhaModalOpen, setIsFolhaModalOpen] = useState(false);
     
     const openModal = (corrida)=>{
@@ -24,7 +24,7 @@ function FolhaProducao() {
 
         async function fetchFolhas() {
             try {
-                const response = await axios.get("http://localhost:3001/jsonFolha/listAllFiles");
+                const response = await axios.get("http://34.67.190.19:3001/jsonFolha/listAllFiles");
                 console.log(response.data.files);
                 
                 const files = response.data.files;
@@ -35,7 +35,7 @@ function FolhaProducao() {
                         let [ano, mes, corrida] = filePath.split('/'); 
                         corrida = corrida.split('.')[0];
                         console.log(corrida);
-                        const jsonData = await axios.get(`http://localhost:3001/jsonFolha/findFile/${corrida}`)
+                        const jsonData = await axios.get(`http://34.67.190.19:3001/jsonFolha/findFile/${corrida}`)
                         console.log(jsonData.data);
                         return jsonData.data
                     })
@@ -47,7 +47,7 @@ function FolhaProducao() {
             }
         }
         fetchFolhas();
-    }, []);
+    }, [folhas]);
 
     return (
         <div className={styles.container}>
