@@ -8,7 +8,7 @@ import FolhaDigitalizadaModal from "../projectForms/FolhaDigitalizadaModal";
 function FolhaProducao() {
     
     const [selectedFolha, setSelectedFolha] = useState(null);
-    const [folhas, setFolhas] = useState([]);
+    const [folhas,setFolhas] = useState([]);
     const [isFolhaModalOpen, setIsFolhaModalOpen] = useState(false);
     
     const openModal = (folha)=>{
@@ -46,7 +46,7 @@ function FolhaProducao() {
             }
         }
         fetchFolhas();
-    }, []);
+    }, [folhas]);
 
     return (
         <div className={styles.container}>
