@@ -16,23 +16,34 @@
 .window_content {
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
-  max-height: 90vh;
-  overflow-y: auto;
   width: 90%;
   max-width: 600px;
+  max-height: 90vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* protege os cantos arredondados */
 }
 
+.window_scrollable {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* botão "X" sempre visível */
 .close_button {
-  position: absolute;
+  position: sticky;
   top: 10px;
-  right: 15px;
+  margin-left: auto; /* pushes the button to the right */
   background: transparent;
   border: none;
   font-size: 24px;
   cursor: pointer;
+  z-index: 10;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .title {
@@ -85,4 +96,79 @@
   border-radius: 6px;
   font-size: 14px;
   resize: vertical;
+}
+
+.subitem_list {
+  margin-top: 6px;
+  margin-left: 18px;
+  padding-left: 12px;
+  border-left: 2px solid #ddd;
+}
+
+.subitem_list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.subitem_text {
+  flex-grow: 1;
+}
+
+.subitem_actions {
+  display: flex;
+  gap: 6px;
+}
+
+.subitem_actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+  padding: 2px;
+}
+
+.subitem_actions button:hover {
+  color: #007bff;
+}
+.subitem_list {
+  list-style: none;
+  padding-left: 1em;
+  margin-top: 8px;
+}
+
+.subitem_list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.subitem_text {
+  flex-grow: 1;
+}
+
+.subitem_actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.add_button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add_button:hover {
+  text-decoration: underline;
 }

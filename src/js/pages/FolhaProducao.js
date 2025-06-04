@@ -46,7 +46,7 @@ function FolhaProducao() {
             }
         }
         fetchFolhas();
-    }, [folhas]);
+    }, []);
 
     return (
         <div className={styles.container}>
