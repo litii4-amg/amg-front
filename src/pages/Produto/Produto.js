@@ -4,7 +4,7 @@ import {FaEye} from "react-icons/fa";
 
 import styles from "../../css/Produto.module.css"
 
-import ProdutoModal from "../projectForms/ProdutoModal";
+import ProdutoModal from "../js/projectForms/ProdutoModal";
 
 function Produto() {
 

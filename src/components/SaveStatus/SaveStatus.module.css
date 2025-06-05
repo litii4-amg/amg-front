@@ -1,0 +1,29 @@
+.status_saving,
+.status_error,
+.status_saved {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   font-size: 0.9rem;
+   font-weight: 500;
+   padding: 6px 10px;
+   border-radius: 4px;
+}
+
+.status_saving {
+   color: #777;
+   background-color: #f8f8f8;
+   border: 1px solid #eee;
+}
+
+.status_saved {
+   color: #28a745;
+   background-color: #e7f8ec;
+   border: 1px solid #d1f5d8;
+}
+
+.status_error {
+   color: #dc3545;
+   background-color: #fdecea;
+   border: 1px solid #f9d4d8;
+}

@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
-import Home from "./js/pages/Home";
-import Pedido from "./js/pages/Pedido";
-import Lote from "./js/pages/Lote";
-import Produto from "./js/pages/Produto";
-import Parada from "./js/pages/Parada";
-import Produtividade from "./js/pages/Produtividade";
-import FolhaProducao from "./js/pages/FolhaProducao";
-import FolhaProducaoAudio from "./js/pages/FolhaProducaoAudio";
-import FolhaProducaoDados from "./js/pages/FolhaProducaoDados";
-import FolhaProduFront from "./js/pages/FolhaProduFront";
+import Home from "./pages/Home/Home";
+import Pedido from "./pages/Pedido/Pedido";
+import Lote from "./pages/Lote/Lote";
+import Produto from "./pages/Produto";
+import Parada from "./pages/Parada/Parada";
+import Produtividade from "./pages/Produtividade/Produtividade";
+import FolhaProducao from "./pages/FolhaProducao/FolhaProducao";
+import FolhaProducaoAudio from "./pages/FolhaProducaoAudio";
+import FolhaProducaoDados from "./pages/FolhaProducaoDados/FolhaProducaoDados";
+import FolhaProduFront from "./pages/FolhaProducaoFront/FolhaProduFront";
 
-import Container from "./js/layouts/Container";
-import Navbar from "./js/layouts/Navbar";
-import Footer from "./js/layouts/Footer";
+import Container from "./layout/Container/Container";
+import Navbar from "./layout/NavBar/NavBar";
+import Footer from "./layout/Footer/Footer";
 
 function App() {
   return (

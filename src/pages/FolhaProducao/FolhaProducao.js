@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import styles from "../../css/FolhasDigitalizadas.module.css"
+import styles from "./FolhaProducao.module.css"
 
-import FolhaDigitalizadaModal from "../projectForms/FolhaDigitalizadaModal";
+import FolhaDigitalizadaModal from "../../components/FolhaDigitalizadaModal/FolhaDigitalizadaModal";
 
 function FolhaProducao() {
     

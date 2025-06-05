@@ -1,0 +1,115 @@
+
+
+.data_item {
+   background-color: #f9f9f9;
+   padding: 12px 16px;
+   border-radius: 6px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border: 1px solid #eee; /* Adiciona uma borda leve */
+}
+
+.data_text {
+   flex-grow: 1;
+   line-height: 1.5;
+}
+
+.data_text strong {
+   font-weight: 600;
+   color: #444;
+   margin-right: 6px;
+}
+
+.data_actions,
+.subitem_actions {
+   display: flex;
+   gap: 8px;
+}
+
+.data_actions button,
+.subitem_actions button,
+.add_button {
+   background: none;
+   border: 1px solid #ccc; /* Bordas nos botões */
+   color: #555;
+   cursor: pointer;
+   padding: 6px 10px;
+   border-radius: 4px;
+   font-size: 0.9rem;
+   display: flex;
+   align-items: center;
+   gap: 4px;
+   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.data_actions button:hover,
+.subitem_actions button:hover,
+.add_button:hover {
+   background-color: #eee;
+   border-color: #bbb;
+   color: #333;
+}
+
+.data_actions svg,
+.subitem_actions svg,
+.add_button svg {
+   font-size: 1rem;
+}
+
+.data_item textarea,
+.data_item input {
+   width: 100%;
+   margin-top: 4px;
+   padding: 8px;
+   border: 1px solid #ddd;
+   border-radius: 4px;
+   font-size: 1rem;
+   resize: vertical;
+   box-sizing: border-box; /* Importante para o width correto */
+}
+
+.subitem_list {
+   list-style: none;
+   padding-left: 16px;
+   margin-top: 8px;
+   border-left: 2px solid #ddd; /* Destaque sutil para a lista */
+}
+
+.subitem_list li {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 8px 0;
+   font-size: 1rem;
+   color: #333;
+   border-bottom: 1px dashed #eee; /* Separador sutil entre os itens */
+}
+
+.subitem_list li:last-child {
+   border-bottom: none;
+}
+
+.subitem_text {
+   flex-grow: 1;
+}
+
+.add_button {
+   margin-top: 8px;
+   border-color: #007bff;
+   color: #007bff;
+   background-color: transparent;
+}
+
+.add_button:hover {
+   background-color: rgba(0, 123, 255, 0.1);
+   color: #0056b3;
+   border-color: #0056b3;
+}
+
+.single_item_container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}

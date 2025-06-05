@@ -1,0 +1,98 @@
+.window {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente mais suave */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+.window_content {
+   background-color: #fff;
+   border-radius: 8px;
+   width: 90%;
+   max-width: 700px; 
+   max-height: 90vh;
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   overflow: hidden;
+}
+
+.modal_header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 16px 20px;
+   border-bottom: 1px solid #eee; /* Linha sutil para separar o header */
+}
+
+.modal_header h2 {
+   margin: 0;
+   font-size: 1.5rem;
+   color: #333;
+}
+
+.window_scrollable {
+   padding: 20px;
+   overflow-y: auto;
+   flex-grow: 1;
+}
+
+.close_button {
+   background: none;
+   border: none;
+   font-size: 24px;
+   cursor: pointer;
+   color: #777;
+   opacity: 0.7;
+   transition: opacity 0.2s ease;
+   padding: 8px;
+   border-radius: 5px;
+}
+
+.close_button:hover {
+   opacity: 1;
+   background-color: #f8f8f8;
+}
+
+h2 {
+   color: #333;
+   margin-top: 0;
+   margin-bottom: 16px;
+   font-size: 1.75rem;
+}
+
+h3 {
+   color: #555;
+   margin-top: 24px;
+   margin-bottom: 12px;
+   font-size: 1.2rem;
+   border-bottom: 1px solid #eee;
+   padding-bottom: 8px;
+}
+
+p {
+   color: #666;
+   margin-bottom: 8px;
+}
+
+
+.single_item_container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+
+.data_list {
+   margin-top: 16px;
+   display: grid;
+   grid-template-columns: 1fr; 
+   gap: 12px;
+}

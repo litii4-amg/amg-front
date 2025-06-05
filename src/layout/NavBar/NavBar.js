@@ -2,11 +2,11 @@ import React, {useState, useEffect, use} from 'react';
 
 import {Link} from "react-router-dom"
 
-import Container from './Container';
+import Container from '../Container/Container';
 
-import styles from "../../css/Navbar.module.css"
+import styles from "./Navbar.module.css"
 
-import logo from "../../img/AMG-logo-blue.svg"
+import logo from "../../assets/img/AMG-logo-blue.svg"
 
 import { IoIosArrowDown } from "react-icons/io";
 
