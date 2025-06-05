@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import styles from "../../css/FolhaProducao.module.css"
+import styles from "./FolhaProducaoFront.module.css"
 
 function FolhaProducao() {
     
@@ -78,7 +78,6 @@ function FolhaProducao() {
         // Dados para o serem salvos no banco de dados
         
         const payload = {
-            
             corrida: 1233223234, 
             produto:"Tibal 5/1",
             codigoDeBarras: "L: 0820,0kg T: 0021,0kg - TER 04/03/25 10:02:",

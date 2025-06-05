@@ -1,8 +1,6 @@
-import React, {useState, useEffect, use} from 'react';
+import {useState} from 'react';
 
 import {Link} from "react-router-dom"
-
-import Container from '../Container/Container';
 
 import styles from "./Navbar.module.css"
 
@@ -12,35 +10,23 @@ import { IoIosArrowDown } from "react-icons/io";
 
 function Navbar(){
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    
     return(
         <nav className={styles.navbar}>
-            <Container>
-                <Link to="/"><img src={logo} alt="AMG"/></Link>
-                <ul className={styles.list}>
-                    {/* <li className={styles.item}><Link to="/">Inicio</Link></li> */}
-                    {/* <li className={styles.item}><Link to="/parada">Parada</Link></li> */}
-                    <li className={styles.dropdown} onMouseEnter={() => setDropdownOpen(true) } onMouseLeave={() => setDropdownOpen(false)}>
-                        <span className={styles.dropbtn}>Produção <IoIosArrowDown className={styles.IoIosArrowDown}/></span>
-                    
-                        {dropdownOpen && (
-                            <ul className={styles.dropdown_content}>
-                                {/* <li><Link to="/pedido">Pedido</Link></li>
-                                <li><Link to="/lote">Lote</Link></li> */}
-                                <li><Link to ="/produto">Produto</Link></li>
-                                <li><Link to ="/produtividade">Produtividade</Link></li>
-                                <li><Link to ="/folhaProducao">Folha de Produção</Link></li>
-                                <li><Link to ="/folhaProducaoAudio">Folha de Produção Audio</Link></li>
-                                <li><Link to ="/folhaProducaoDados">Folha de Produção Dados</Link></li>
-                                <li><Link to ="/folhaProduFront">Folha de Produção Front</Link></li>
-                            </ul>
-                        )}
-                    </li>
-                    {/* <li className={styles.item}><Link to="/pedido">Pedido</Link></li>
-                    <li className={styles.item}><Link to="/lote">Lote</Link></li>
-                    <li className={styles.item}><Link to ="/produto">Produto</Link></li> */}
-                </ul>
-            </Container>
+            <Link to="/"><img src={logo} alt="AMG"/></Link>
+            <ul className={styles.list}>
+                <li className={styles.dropdown} onMouseEnter={() => setDropdownOpen(true) } onMouseLeave={() => setDropdownOpen(false)}>
+                    <span className={styles.dropbtn}>Produção <IoIosArrowDown className={styles.IoIosArrowDown}/></span>
+                
+                    {dropdownOpen && (
+                        <ul className={styles.dropdown_content}>
+                            <li><Link to ="/folhaProducao">Folha de Produção</Link></li>
+                            <li><Link to ="/folhaProducaoAudio">Folha de Produção Audio</Link></li>
+                            <li><Link to ="/folhaProducaoDados">Folha de Produção Dados</Link></li>
+                            <li><Link to ="/folhaProduFront">Folha de Produção Front</Link></li>
+                        </ul>
+                    )}
+                </li>
+            </ul>
         </nav>
 
     );

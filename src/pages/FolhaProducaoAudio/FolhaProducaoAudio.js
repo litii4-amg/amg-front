@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import styles from "../../css/FolhasDigitalizadas.module.css"
+import styles from "./FolhaProducaoAudio.module.css"
 
-import AudioModal from "../projectForms/AudioModal";
+import AudioModal from "../../components/AudioModal/AudioModal";
 
 function FolhaProducao() {
     

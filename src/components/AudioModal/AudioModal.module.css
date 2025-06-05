@@ -8,7 +8,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 10px;
 }
-
 .window_content {
     background-color: white;
     border-radius: 10px;
@@ -22,7 +21,6 @@
     overflow-y: auto;
     max-height: 90vh;
 }
-
 .close_button {
     position: absolute;
     top: 0.1rem;
@@ -35,33 +33,15 @@
     font-size: 2rem;
 }
 
-.window_content form {
-    position: relative;
-    top: 3rem;
-    flex-direction: column;
-}
-.window_content div{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+.window_content p {
+    margin-bottom: 0.5rem; /* Adiciona um pouco de espaço abaixo de cada item */
+    width: 100%; /* Garante que cada par chave-valor ocupe a largura total */
+    display: flex; /* Para alinhar chave e valor na mesma linha */
+    align-items: baseline; /* Alinha a linha de base dos textos */
 }
 
-.form_group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    width: 80%;
-}
-
-.form_group label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.form_group input, .form_group textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.window_content p strong {
+    width: 150px; /* Largura fixa para as chaves para alinhamento */
+    display: inline-block;
+    margin-right: 5px; /* Espaço entre a chave e o valor */
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import styles from './ProdutividadeModa.module.css';
+import styles from './ProdutividadeModal.module.css';
 
 function ProdutividadeModal({ isOpen, onClose, produtividadeID }) {
     
