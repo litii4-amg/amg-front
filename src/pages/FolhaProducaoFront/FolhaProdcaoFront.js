@@ -6,6 +6,7 @@ import styles from "./FolhaProducaoFront.module.css"
 function FolhaProducao() {
     
     const [folhas,setFolhas] = useState([]);
+    const [wsStatus, setWsStatus] = useState("Desconectado");
     
     const [data, setData] = useState({
         Insumos: [],       // nomes dos insumos (para título das colunas)
@@ -14,7 +15,59 @@ function FolhaProducao() {
         PesoReal: []
     });
     
-    
+    // --- LÓGICA DO WEBSOCKET ---
+    useEffect(() => {
+        // Conecta-se ao servidor WebSocket usando o IP e porta da sua API.
+        // O protocolo para WebSocket é 'ws://' (ou 'wss://' para conexões seguras).
+        const ws = new WebSocket('ws://localhost:3001');
+
+        ws.onopen = () => {
+            console.log('Conectado ao servidor WebSocket!');
+            setWsStatus('Conectado');
+        };
+
+        // ESTA É A PARTE MAIS IMPORTANTE
+        ws.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+            console.log('Dados recebidos via WebSocket:', message.data);
+
+            // Verifica se a mensagem é do tipo que esperamos ('new_audio_data')
+            if (message.type === 'new_audio_data' && message.data) {
+                
+                // Antes de atualizar, verificamos se a corrida recebida é a mesma da tela.
+                // Isso evita que o formulário de uma corrida seja atualizado com dados de outra.
+                if (folhas.corrida && folhas.corrida !== message.data.corrida) {
+                    console.warn(`Dados recebidos para corrida ${message.data.corrida}, mas a corrida ${folhas.corrida} está em exibição. Ignorando.`);
+                    return;
+                }
+
+                // Atualiza o estado do formulário.
+                // A sintaxe de spread (...) mescla os dados antigos com os novos.
+                // Ex: Se o estado era { a: 1, b: 2 } e a mensagem é { b: 3 },
+                // o novo estado será { a: 1, b: 3 }.
+                setFolhas(prevFolhas => ({
+                    ...prevFolhas,
+                    ...message.data
+                }));
+            }
+        };
+
+        ws.onclose = () => {
+            console.log('Desconectado do servidor WebSocket.');
+            setWsStatus('Desconectado');
+        };
+
+        ws.onerror = (error) => {
+            console.error('Erro no WebSocket:', error);
+            setWsStatus('Erro de conexão');
+        };
+
+        // Função de limpeza para fechar a conexão quando o componente for desmontado
+        return () => {
+            ws.close();
+        };
+    }, [folhas.corrida]);
+
     useEffect(() => {
 
         async function fetchFolhas() {
@@ -137,6 +190,9 @@ function FolhaProducao() {
     return (
         <div className={styles.container}>
             <h1>Folha de Controle de Processo</h1>
+            <span className={`${styles.status} ${styles[wsStatus.replace(' ', '-')]}`}>
+                WebSocket: {wsStatus}
+            </span>
             <div className={styles.section}>
 
                 <div>

@@ -1,0 +1,9 @@
+runtime: nodejs22
+handlers:
+  - url: /(.*\.(json|js|css|ico|png|svg|jpg|jpeg|txt))$
+    static_files: build/\1
+    upload: build/.*\.(json|js|css|ico|png|svg|jpg|jpeg|txt)$
+
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.htm
