@@ -1,70 +1,67 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import styles from "./FolhaProducaoFront.module.css"
 
 function FolhaProducao() {
     
-    const [folhas,setFolhas] = useState([]);
+    const [folhas, setFolhas] = useState({});;
     const [wsStatus, setWsStatus] = useState("Desconectado");
-    
-    const [data, setData] = useState({
-        Insumos: [],       // nomes dos insumos (para título das colunas)
-        PesoKG: [],
-        NLote: [],
-        PesoReal: []
-    });
+    const ws = useRef(null);
     
     // --- LÓGICA DO WEBSOCKET ---
     useEffect(() => {
-        // Conecta-se ao servidor WebSocket usando o IP e porta da sua API.
-        // O protocolo para WebSocket é 'ws://' (ou 'wss://' para conexões seguras).
-        const ws = new WebSocket('ws://localhost:3001');
+        // Conecta-se ao servidor WebSocket
+        // Usamos a referência 'ws.current' para armazenar a instância do WebSocket
+        ws.current = new WebSocket('ws://localhost:3001');
+        const socket = ws.current;
 
-        ws.onopen = () => {
+        socket.onopen = () => {
             console.log('Conectado ao servidor WebSocket!');
             setWsStatus('Conectado');
         };
 
-        // ESTA É A PARTE MAIS IMPORTANTE
-        ws.onmessage = (event) => {
+        socket.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            console.log('Dados recebidos via WebSocket:', message.data);
+            console.log('Dados recebidos via WebSocket:', message);
 
-            // Verifica se a mensagem é do tipo que esperamos ('new_audio_data')
-            if (message.type === 'new_audio_data' && message.data) {
-                
-                // Antes de atualizar, verificamos se a corrida recebida é a mesma da tela.
-                // Isso evita que o formulário de uma corrida seja atualizado com dados de outra.
-                if (folhas.corrida && folhas.corrida !== message.data.corrida) {
-                    console.warn(`Dados recebidos para corrida ${message.data.corrida}, mas a corrida ${folhas.corrida} está em exibição. Ignorando.`);
+            // Lógica para atualizar o estado com base no TIPO da mensagem
+            const updateState = (data) => {
+                // Previne atualizações se a corrida for diferente
+                if (data.corrida && folhas.corrida && folhas.corrida !== data.corrida) {
+                    console.warn(`Dados recebidos para a corrida ${data.corrida}, mas a corrida ${folhas.corrida} está em exibição. Ignorando.`);
                     return;
                 }
-
-                // Atualiza o estado do formulário.
-                // A sintaxe de spread (...) mescla os dados antigos com os novos.
-                // Ex: Se o estado era { a: 1, b: 2 } e a mensagem é { b: 3 },
-                // o novo estado será { a: 1, b: 3 }.
                 setFolhas(prevFolhas => ({
                     ...prevFolhas,
-                    ...message.data
+                    ...data
                 }));
+            };
+            
+            // Se for um novo dado de áudio (enviado pelo servidor via broadcast)
+            if (message.type === 'new_audio_data' && message.data) {
+                updateState(message.data);
+            }
+
+            // Se for uma atualização de formulário (enviada por outra interface)
+            if (message.type === 'form_update' && message.data) {
+                updateState(message.data);
             }
         };
 
-        ws.onclose = () => {
+        socket.onclose = () => {
             console.log('Desconectado do servidor WebSocket.');
             setWsStatus('Desconectado');
         };
 
-        ws.onerror = (error) => {
+        socket.onerror = (error) => {
             console.error('Erro no WebSocket:', error);
             setWsStatus('Erro de conexão');
         };
 
-        // Função de limpeza para fechar a conexão quando o componente for desmontado
+        // Função de limpeza para fechar a conexão
         return () => {
-            ws.close();
+            socket.close();
         };
     }, [folhas.corrida]);
 
@@ -72,7 +69,7 @@ function FolhaProducao() {
 
         async function fetchFolhas() {
             try {
-                const response = await axios.get("http://34.67.190.19:3001/jsonAudio/findFile/1233223234");
+                const response = await axios.get("http://localhost:3001/jsonAudio/findFile/220030490");
                 console.log(response.data);
                 setFolhas(response.data);
 
@@ -83,55 +80,29 @@ function FolhaProducao() {
         fetchFolhas();
     }, []);
 
-    const handleInsumoChange = (index, field, value) => {
-        const updatedInsumos = [...data.Insumos];
-        updatedInsumos[index][field] = value;
-        setData(prevData => ({
-            ...prevData,
-            Insumos: updatedInsumos
-        }));
-    };
-
-    const addInsumo = () => {
-        setData(prevData => ({
-            ...prevData,
-            Insumos: [...(prevData.Insumos || []), ""],
-            PesoKG: [...(prevData.PesoKG || []), ""],
-            NLote: [...(prevData.NLote || []), ""],
-            PesoReal: [...(prevData.PesoReal || []), ""]
-        }));
-    };
-
-    const handleInsumoNomeChange = (index, value) => {
-        const updated = [...data.Insumos];
-        updated[index] = value;
-        setData(prevData => ({ ...prevData, Insumos: updated }));
-    };
-    
-    const handleArrayChange = (field, index, value) => {
-        const updated = [...data[field]];
-        updated[index] = value;
-        setData(prevData => ({ ...prevData, [field]: updated }));
-    };
-
     const handleChange = (e) => {
         const { name, value } = e.target;
+        const updatedData = { [name]: value };
+        
         setFolhas(prev => ({
             ...prev,
-            [name]: value
+            ...updatedData
         }));
+
+        if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+            ws.current.send(JSON.stringify({
+                type: 'form_update',
+                data: updatedData
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        let corridaAtual = parseInt(folhas.corrida, 10);
-        if (isNaN(corridaAtual)) corridaAtual = 0;  // segurança
-        const novaCorrida = corridaAtual + 1;
-        // Dados para o serem salvos no banco de dados
-        
         const payload = {
-            corrida: 1233223234, 
+            
+            corrida: 220030490, 
             produto:"Tibal 5/1",
             codigoDeBarras: "L: 0820,0kg T: 0021,0kg - TER 04/03/25 10:02:",
             dataDeProducao: " ", 
@@ -178,7 +149,7 @@ function FolhaProducao() {
 
         console.log(payload);
         try{
-            await axios.post("http://34.67.190.19:3001/jsonAudio/uploadJson", payload);
+            await axios.post("http://localhost:3001/jsonAudio/uploadJson", payload);
             alert("Dados salvos com sucesso!");
 
             window.location.reload();
@@ -205,7 +176,6 @@ function FolhaProducao() {
                     <p><strong>Operador Forno:</strong> <input name="operadorForno" value={folhas.operadorForno || ""} onChange={handleChange} /></p>
                     <p><strong>Líder:</strong> <input name="lider" value={folhas.lider || ""} onChange={handleChange} /></p>
                 </div>
-                <button type="button" onClick={addInsumo}>Adicionar Número Lote e Peso Real</button>
                 
                 <div className={styles.section_1}>
                     <table>
@@ -273,7 +243,7 @@ function FolhaProducao() {
                         <thead>
                             <tr>
                                 <th>Reação</th>
-                                <th colSpan="3" >Forno: {data.FornoReac}</th>
+                                <th colSpan="3" >Forno: {folhas.FornoReac}</th>
                             </tr>
                             <tr>
                                 <th>Etapa</th>
